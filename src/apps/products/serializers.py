@@ -67,7 +67,14 @@ class ProductMaterialsSerializer(serializers.Serializer):
                     
 
             else:
-                raise ValidationError(f'Not enough {key} in warehouses')
+                product_materials.append(
+                            {
+                            'warehouse': None,
+                            'material': key,
+                            'quantity': necessary_materials[key],
+                            'price': None,
+                            }
+                        )
 
         data = {
             'product_name':product.name,
